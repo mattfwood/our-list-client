@@ -64,6 +64,22 @@ html {
   height: 20px;
 }
 
+/* NAVIGATION */
+
+nav {
+  background-color: #FFF;
+}
+
+nav:after {
+  background: linear-gradient(to right, #9E7CC1, #8ECDEA);
+  content: '';
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  height: 3px;
+  left: 0;
+}
+
 /* CREATE PAGE */
 
 .add-list-button {
@@ -89,6 +105,7 @@ html {
   border-radius: 4px;
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
   background-color: #fff;
+  background-color: rgba(97, 189, 79, 0.3);
   margin-bottom: 16px;
   color: rgba(0, 0, 0, 0.7);
   position: absolute;
@@ -96,15 +113,13 @@ html {
   left: 8px;
   bottom: 0;
   right: 8px;
+  overflow: auto;
   transition: all 300ms ease;
 }
 
 .ListPreview:hover {
   transform: translateY(-2px);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 3px 1px -2px rgba(0, 0, 0, 0.12),
-  0 1px 5px 0 rgba(0, 0, 0, 0.2)
-
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)
 }
 
 .ListPreview+.ListPreview {
@@ -126,4 +141,16 @@ html {
   border-radius: 4px;
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
   background-color: #fff;
+}
+
+.delete-list {
+  border-radius: 4px;
+  color: #d64242;
+  border: 1px solid #e78e8e;
+  transition: all 300ms ease;
+}
+
+.delete-list:hover {
+  background-color: #d64242;
+  color: #FFF;
 }

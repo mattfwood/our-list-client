@@ -74,6 +74,10 @@ const CREATE_LIST_MUTATION = gql`
     createList(title: $title) {
       id
       title
+      items {
+        id
+        text
+      }
     }
   }
 `;

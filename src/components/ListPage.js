@@ -17,7 +17,6 @@ class DetailPage extends Component {
     const { newItemText } = this.state;
     const listId = this.props.match.params.id;
 
-    console.log(this.props);
     try {
       await createItem({
         variables: {
@@ -65,17 +64,22 @@ class DetailPage extends Component {
                   </div>
                   <Mutation
                     mutation={CREATE_ITEM_MUTATION}
-                    update={(cache, { data }) => {
-                      console.log(cache, data);
+                    update={(store, { data }) => {
+                      const listId = this.props.match.params.id;
 
                       // get current list from query
-                      const { list } = cache.readQuery({ query: LIST_QUERY });
+                      const { list } = store.readQuery({
+                        query: LIST_QUERY,
+                        variables: {
+                          id: listId
+                        }
+                      });
 
                       // add current item to items array
                       list.items.push(data.createItem)
 
-                      // write update query to cache
-                      cache.writeQuery({
+                      // write updated query to cache
+                      store.writeQuery({
                         query: LIST_QUERY,
                         data: {
                           list
@@ -84,7 +88,6 @@ class DetailPage extends Component {
                     }}
                   >
                     {(createItem, other) => {
-                      console.log(createItem, other);
                       return (
                         <form className="new-list-item" onSubmit={e => this.createItem(e, createItem)}>
                           <input
@@ -96,12 +99,19 @@ class DetailPage extends Component {
                               this.setState({ newItemText: input.target.value })
                             }
                           />
-                          <input className="bn add-list-button " disabled={!this.state.newItemText} type="submit" value="Add" />
+                          <input
+                            className="bn add-list-button w-100"
+                            disabled={!this.state.newItemText}
+                            type="submit"
+                            value="Add"
+                          />
                         </form>
                       )
                     }}
                   </Mutation>
-                  {action}
+                  <div className="mv4">
+                    {action}
+                  </div>
                 </Col>
               </Row>
             </Grid>
@@ -128,7 +138,7 @@ class DetailPage extends Component {
         {(deleteList, { data, loading, error }) => {
           return (
             <a
-              className="f6 dim br1 ba ph3 pv2 mb2 dib black pointer"
+              className="f6 br1 ba ph3 pv2 mb2 dib black pointer delete-list"
               onClick={async () => {
                 await deleteList({
                   variables: { id },
@@ -136,7 +146,7 @@ class DetailPage extends Component {
                 this.props.history.replace('/');
               }}
             >
-              Delete
+              Delete List
             </a>
           );
         }}

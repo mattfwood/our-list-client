@@ -32,14 +32,14 @@ export default class FeedPage extends Component {
           return (
             <Grid>
               <Row>
-                <Col lg={8} lgOffset={2} md={6} mdOffset={3} xs={12}>
+                <Col md={8} mdOffset={2} xs={12}>
                   <h1>Lists</h1>
                   <CreatePage />
                   <Row>
                     {data.listFeed &&
-                      data.listFeed.map(list => (
+                      data.listFeed.map((list, index) => (
                         <Col className="box" lg={4} md={6} xs={12}>
-                          <ListPreview list={list} />
+                          <ListPreview list={list} index={index} />
                         </Col>
                       ))}
                     {this.props.children}
@@ -59,6 +59,7 @@ export const FEED_QUERY = gql`
     listFeed {
       id
       title
+      createdAt
       items {
         text
       }
