@@ -38,7 +38,7 @@ export default class FeedPage extends Component {
                   <Row>
                     {data.listFeed &&
                       data.listFeed.map(list => (
-                      <Col className="box" lg={6} xs={12}>
+                        <Col className="box" lg={4} md={6} xs={12}>
                           <ListPreview list={list} />
                         </Col>
                       ))}
