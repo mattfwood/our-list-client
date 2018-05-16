@@ -45,20 +45,10 @@ export default class FeedPage extends Component {
   }
 }
 
-// export const FEED_QUERY = gql`
-//   query FeedQuery {
-//     feed {
-//       id
-//       text
-//       title
-//       isPublished
-//     }
-//   }
-// `
-
 export const FEED_QUERY = gql`
   query FeedQuery {
     listFeed {
+      id
       title
       items {
         text

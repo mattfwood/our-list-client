@@ -92,3 +92,12 @@ html {
 .ListPreview__item {
 
 }
+
+/* LIST PAGE */
+
+.list-item {
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}

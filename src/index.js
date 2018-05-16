@@ -20,10 +20,11 @@ import { ApolloLink, concat } from 'apollo-link';
 import FeedPage from './components/FeedPage';
 import DraftsPage from './components/DraftsPage';
 import CreatePage from './components/CreatePage';
-import DetailPage from './components/DetailPage';
+import ListPage from './components/ListPage';
 
 import 'tachyons';
 import './index.css';
+import 'react-flexbox-grid/dist/react-flexbox-grid.css';
 
 const uri = window.location.href.includes('localhost')
   ? 'http://localhost:4000'
@@ -89,24 +90,6 @@ ReactDOM.render(
           >
             Our List
           </Link>
-          {/* <NavLink
-            className="link dim f6 f5-ns dib mr3 black"
-            activeClassName="gray"
-            exact={true}
-            to="/"
-            title="Feed"
-          >
-            Feed
-          </NavLink> */}
-          {/* <NavLink
-            className="link dim f6 f5-ns dib mr3 black"
-            activeClassName="gray"
-            exact={true}
-            to="/drafts"
-            title="Drafts"
-          >
-            Drafts
-          </NavLink> */}
           {/* <Link
             to="/create"
             className="f6 link dim br1 ba ph3 pv2 fr mb2 dib black"
@@ -119,7 +102,7 @@ ReactDOM.render(
             <Route exact path="/" component={FeedPage} />
             {/* <Route path="/drafts" component={DraftsPage} /> */}
             <Route path="/create" component={CreatePage} />
-            <Route path="/post/:id" component={DetailPage} />
+            <Route path="/list/:id" component={ListPage} />
           </Switch>
         </div>
       </Fragment>
