@@ -22,8 +22,12 @@ import DetailPage from './components/DetailPage';
 import 'tachyons';
 import './index.css';
 
+const uri = window.location.href.includes('localhost')
+  ? 'http://localhost:4000'
+  : 'https://our-list-server.herokuapp.com/';
+
 const client = new ApolloClient({
-  uri: 'https://our-list-server.herokuapp.com/',
+  uri,
 });
 
 ReactDOM.render(
