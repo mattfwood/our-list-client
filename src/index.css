@@ -1,5 +1,4 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300, 400';
-
 body {
   margin: 0;
   padding: 0;
@@ -66,22 +65,40 @@ html {
 }
 
 /* CREATE PAGE */
+
 .add-list-button {
   padding: 10px 15px;
   background-color: rgba( 0, 0, 0, .1);
   border-radius: 2px;
 }
 
+.box {
+  position: relative;
+}
+
+.box:before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
 /* LIST PREVIEW */
+
 .ListPreview {
   padding: 15px;
   border-radius: 4px;
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
   background-color: #fff;
+  margin-bottom: 16px;
+  position: absolute;
+  top: 0;
+  left: 8px;
+  bottom: 0;
+  right: 8px;
 }
 
-.ListPreview + .ListPreview {
-  margin-top: 5px;
+.ListPreview+.ListPreview {
+  /* margin-top: 16px; */
 }
 
 .ListPreview__title {
@@ -89,9 +106,7 @@ html {
   padding-bottom: 5px;
 }
 
-.ListPreview__item {
-
-}
+.ListPreview__item {}
 
 /* LIST PAGE */
 

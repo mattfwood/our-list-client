@@ -8,23 +8,27 @@ import { FEED_QUERY } from './FeedPage';
 
 class DetailPage extends Component {
   state = {
-    newItem: '',
+    newItemText: '',
   };
 
-  addItem = async (e, addItem) => {
+  createItem = async (e, createItem) => {
     e.preventDefault();
 
-    const { newItem } = this.state;
+    const { newItemText } = this.state;
     const listId = this.props.match.params.id;
 
     console.log(this.props);
-
-    // await addItem({
-    //   variables: {
-    //     newItem,
-    //     listId: listId
-    //   }
-    // })
+    try {
+      await createItem({
+        variables: {
+          listId: listId,
+          text: newItemText,
+        }
+      })
+    } catch (error) {
+      console.log(error);
+      console.log(error.message);
+    }
   }
 
   render() {
@@ -59,18 +63,27 @@ class DetailPage extends Component {
                       <div className="list-item">{item.text}</div>
                     ))}
                   </div>
-                  <form className="new-list-item" onSubmit={e => this.addItem(e)}>
-                    <input
-                      type="text"
-                      value={this.state.newItem}
-                      className="pa2 mv2 br2 b--black-20 bw1 w-100"
-                      placeholder="Add Item"
-                      onChange={input =>
-                        this.setState({ newItem: input.target.value })
-                      }
-                    />
-                    <input class="bn add-list-button " disabled={!this.state.newItem} type="submit" value="Add" />
-                  </form>
+                  <Mutation
+                    mutation={CREATE_ITEM_MUTATION}
+                  >
+                    {(createItem, other) => {
+                      console.log(createItem, other);
+                      return (
+                        <form className="new-list-item" onSubmit={e => this.createItem(e, createItem)}>
+                          <input
+                            type="text"
+                            value={this.state.newItemText}
+                            className="pa2 mv2 br2 b--black-20 bw1 w-100"
+                            placeholder="Add Item"
+                            onChange={input =>
+                              this.setState({ newItemText: input.target.value })
+                            }
+                          />
+                          <input className="bn add-list-button " disabled={!this.state.newItemText} type="submit" value="Add" />
+                        </form>
+                      )
+                    }}
+                  </Mutation>
                   {action}
                 </Col>
               </Row>
@@ -137,15 +150,11 @@ const DELETE_MUTATION = gql`
   }
 `;
 
-const ADD_ITEM_MUTATION = gql`
-  mutation AddItem($listId: ID!, $text: String!) {
-    addItemToList(listId: $listId, text: $text) {
+const CREATE_ITEM_MUTATION = gql`
+  mutation CreateItem($listId: ID!, $text: String!) {
+    createItem(listId: $listId, text: $text) {
       id
-      title
-      items {
-        id
-        text
-      }
+      text
     }
   }
 `

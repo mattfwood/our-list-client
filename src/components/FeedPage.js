@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import CreatePage from './CreatePage';
 import ListPreview from './ListPreview';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 export default class FeedPage extends Component {
   render() {
@@ -29,15 +30,23 @@ export default class FeedPage extends Component {
           console.log(data);
 
           return (
-            <Fragment>
-              <h1>Lists</h1>
-              <CreatePage />
-              {data.listFeed &&
-                data.listFeed.map(list => (
-                  <ListPreview list={list} />
-                ))}
-              {this.props.children}
-            </Fragment>
+            <Grid>
+              <Row>
+                <Col lg={8} lgOffset={2} md={6} mdOffset={3} xs={12}>
+                  <h1>Lists</h1>
+                  <CreatePage />
+                  <Row>
+                    {data.listFeed &&
+                      data.listFeed.map(list => (
+                      <Col className="box" lg={6} xs={12}>
+                          <ListPreview list={list} />
+                        </Col>
+                      ))}
+                    {this.props.children}
+                  </Row>
+                </Col>
+              </Row>
+            </Grid>
           );
         }}
       </Query>
