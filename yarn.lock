@@ -10,6 +10,14 @@
   version "0.12.6"
   resolved "http://registry.npmjs.org/@types/graphql/-/graphql-0.12.6.tgz#3d619198585fcabe5f4e1adfb5cf5f3388c66c13"
 
+"@types/invariant@^2.2.29":
+  version "2.2.29"
+  resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.29.tgz#aa845204cd0a289f65d47e0de63a6a815e30cc66"
+
+"@types/node@^10.0.5":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.1.0.tgz#2783ee1b6c47cbd4044f4a233976c1ac5fa9e942"
+
 "@types/node@^9.4.6":
   version "9.6.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.0.tgz#d3480ee666df9784b1001a1872a2f6ccefb6c2d7"
@@ -2791,6 +2799,10 @@ forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
 
+framesync@^3.0.2, framesync@^3.1.7:
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/framesync/-/framesync-3.1.9.tgz#f65f815c711cf876f343b1f63da6e18b1384172f"
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -3108,6 +3120,10 @@ hawk@~6.0.2:
 he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
+
+hey-listen@^1.0.2:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/hey-listen/-/hey-listen-1.0.5.tgz#6d0a3a2f60177f65bc4404d571a00025bf5dc20e"
 
 history@^4.7.2:
   version "4.7.2"
@@ -4907,6 +4923,21 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
+popmotion-pose@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/popmotion-pose/-/popmotion-pose-1.4.4.tgz#c5a00f37ea9846e212293acda6bc7a80a870ea25"
+  dependencies:
+    popmotion "^8.1.22"
+    pose-core "^0.5.2"
+
+popmotion@^8.1.22:
+  version "8.1.24"
+  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-8.1.24.tgz#9c8943a0dda1a39163cf3e42116c1fb6c41e331e"
+  dependencies:
+    framesync "^3.1.7"
+    style-value-types "^1.0.4"
+    stylefire "^1.2.9"
+
 portfinder@^1.0.9:
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.13.tgz#bb32ecd87c27104ae6ee44b5a3ccbf0ebb1aede9"
@@ -4914,6 +4945,14 @@ portfinder@^1.0.9:
     async "^1.5.2"
     debug "^2.2.0"
     mkdirp "0.5.x"
+
+pose-core@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/pose-core/-/pose-core-0.5.2.tgz#955ff71feba1225539e086500ef193840d399659"
+  dependencies:
+    "@types/invariant" "^2.2.29"
+    "@types/node" "^10.0.5"
+    hey-listen "^1.0.2"
 
 postcss-calc@^5.2.0:
   version "5.3.1"
@@ -5454,6 +5493,13 @@ react-modal@3.4.4:
     prop-types "^15.5.10"
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
+
+react-pose@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/react-pose/-/react-pose-1.6.4.tgz#7ecf491269557e36de04f7009ddc84c161cfa042"
+  dependencies:
+    hey-listen "^1.0.2"
+    popmotion-pose "^1.4.4"
 
 react-router-dom@4.2.2:
   version "4.2.2"
@@ -6257,6 +6303,17 @@ style-loader@0.19.0:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
+
+style-value-types@^1.0.4:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/style-value-types/-/style-value-types-1.0.8.tgz#7effacf9145dc6992d7b8389ae1c5f99209a4551"
+
+stylefire@^1.2.9:
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/stylefire/-/stylefire-1.2.15.tgz#ee681669a1cce9205c973293723ae1b3ede1372f"
+  dependencies:
+    framesync "^3.0.2"
+    style-value-types "^1.0.4"
 
 supports-color@^2.0.0:
   version "2.0.0"
