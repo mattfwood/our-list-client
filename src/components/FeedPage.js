@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import Post from '../components/Post';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
+import CreatePage from './CreatePage';
+import ListPreview from './ListPreview';
 
 export default class FeedPage extends Component {
   render() {
@@ -28,13 +30,11 @@ export default class FeedPage extends Component {
 
           return (
             <Fragment>
-              <h1>Feed</h1>
+              <h1>Lists</h1>
+              <CreatePage />
               {data.listFeed &&
                 data.listFeed.map(list => (
-                  <Fragment>
-                    <div>{list.title}</div>
-                    {list.items.map(item => <div>{item.text}</div>)}
-                  </Fragment>
+                  <ListPreview list={list} />
                 ))}
               {this.props.children}
             </Fragment>

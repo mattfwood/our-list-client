@@ -1,86 +1,81 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import { Mutation } from 'react-apollo'
-import  { gql } from 'apollo-boost'
-import { DRAFTS_QUERY } from './DraftsPage'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { Mutation } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import { FEED_QUERY } from './FeedPage';
 
 class CreatePage extends Component {
   state = {
     title: '',
     text: '',
-  }
+  };
+
+  createList = async (e, createList) => {
+    e.preventDefault();
+    // get title and text from form
+    const { title } = this.state;
+    // run createList mutation
+    await createList({
+      variables: { title },
+    });
+    // redirect to homepage
+    // window.location.reload();
+  };
 
   render() {
     return (
       <Mutation
-        mutation={CREATE_DRAFT_MUTATION}
+        mutation={CREATE_LIST_MUTATION}
         update={(cache, { data }) => {
-          const { drafts } = cache.readQuery({ query: DRAFTS_QUERY })
+          console.log(cache, data);
+          // get most recent items from cache
+          const { listFeed } = cache.readQuery({ query: FEED_QUERY });
+          // update cache and append newest list
+          console.log(listFeed, data.createList);
           cache.writeQuery({
-            query: DRAFTS_QUERY,
-            data: { drafts: drafts.concat([data.createDraft]) },
-          })
+            query: FEED_QUERY,
+            data: {
+              listFeed: [...listFeed, data.createList],
+            },
+          });
         }}
       >
-        {(createDraft, { data, loading, error }) => {
+        {(createList, { data, loading, error }) => {
           return (
-            <div className="pa4 flex justify-center bg-white">
-              <form
-                onSubmit={async e => {
-                  e.preventDefault()
-                  const { title, text } = this.state
-                  await createDraft({
-                    variables: { title, text },
-                  })
-                  this.props.history.replace('/drafts')
-                }}
-              >
-                <h1>Create Draft</h1>
+            <div className="">
+              <form onSubmit={e => this.createList(e, createList)}>
+                <h4>Add List</h4>
                 <input
                   autoFocus
-                  className="w-100 pa2 mv2 br2 b--black-20 bw1"
+                  className="pa2 ma2 br2 b--black-20 bw1"
                   onChange={e => this.setState({ title: e.target.value })}
                   placeholder="Title"
                   type="text"
                   value={this.state.title}
                 />
-                <textarea
-                  className="db w-100 ba bw1 b--black-20 pa2 br2 mb2"
-                  cols={50}
-                  onChange={e => this.setState({ text: e.target.value })}
-                  placeholder="Content"
-                  rows={8}
-                  value={this.state.text}
-                />
                 <input
-                  className={`pa3 bg-black-10 bn ${this.state.text &&
-                    this.state.title &&
+                  className={`bn add-list-button ${this.state.title &&
                     'dim pointer'}`}
-                  disabled={!this.state.text || !this.state.title}
+                  disabled={!this.state.title}
                   type="submit"
-                  value="Create"
+                  value="Add"
                 />
-                <a className="f6 pointer" onClick={this.props.history.goBack}>
-                  or cancel
-                </a>
               </form>
             </div>
-          )
+          );
         }}
       </Mutation>
-    )
+    );
   }
-
 }
 
-const CREATE_DRAFT_MUTATION = gql`
-  mutation CreateDraftMutation($title: String!, $text: String!) {
-    createDraft(title: $title, text: $text) {
+const CREATE_LIST_MUTATION = gql`
+  mutation CreateListMutation($title: String!) {
+    createList(title: $title) {
       id
       title
-      text
     }
   }
-`
+`;
 
-export default withRouter(CreatePage)
+export default withRouter(CreatePage);

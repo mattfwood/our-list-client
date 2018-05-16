@@ -64,3 +64,31 @@ html {
   width: 20px;
   height: 20px;
 }
+
+/* CREATE PAGE */
+.add-list-button {
+  padding: 10px 15px;
+  background-color: rgba( 0, 0, 0, .1);
+  border-radius: 2px;
+}
+
+/* LIST PREVIEW */
+.ListPreview {
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+.ListPreview + .ListPreview {
+  margin-top: 5px;
+}
+
+.ListPreview__title {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.ListPreview__item {
+
+}
