@@ -23,7 +23,7 @@ import 'tachyons';
 import './index.css';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: process.env.GRAPHQL_URL || 'http://localhost:4000',
 });
 
 ReactDOM.render(
