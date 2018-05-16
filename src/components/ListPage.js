@@ -65,6 +65,23 @@ class DetailPage extends Component {
                   </div>
                   <Mutation
                     mutation={CREATE_ITEM_MUTATION}
+                    update={(cache, { data }) => {
+                      console.log(cache, data);
+
+                      // get current list from query
+                      const { list } = cache.readQuery({ query: LIST_QUERY });
+
+                      // add current item to items array
+                      list.items.push(data.createItem)
+
+                      // write update query to cache
+                      cache.writeQuery({
+                        query: LIST_QUERY,
+                        data: {
+                          list
+                        }
+                      })
+                    }}
                   >
                     {(createItem, other) => {
                       console.log(createItem, other);
