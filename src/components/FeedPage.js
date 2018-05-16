@@ -33,7 +33,7 @@ export default class FeedPage extends Component {
             <Grid>
               <Row>
                 <Col md={8} mdOffset={2} xs={12}>
-                  <h1>Lists</h1>
+                  {/* <h1>Lists</h1> */}
                   <CreatePage />
                   <Row>
                     {data.listFeed &&

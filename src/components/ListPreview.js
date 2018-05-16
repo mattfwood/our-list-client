@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 const ListPreview = ({ list, index }) => {
   const colors = [
-    'rgba(97, 189, 79, 0.3)',
-    'rgba(242,214,0, 0.3)',
-    'rgba(255,171,74,0.3)',
-    'rgba(235,90,70,0.3)',
-    'rgba(195,119,224,0.3)',
-    'rgba(0,121,191,0.3)'
+    'rgba(97, 189, 79, 0.5)',
+    'rgba(242,214,0, 0.5)',
+    'rgba(255,171,74,0.5)',
+    'rgba(235,90,70,0.5)',
+    'rgba(195,119,224,0.5)',
+    'rgba(0,121,191,0.5)'
   ];
 
   let colorIndex = index;
