@@ -23,7 +23,7 @@ import 'tachyons';
 import './index.css';
 
 const client = new ApolloClient({
-  uri: process.env.GRAPHQL_URL || 'http://localhost:4000',
+  uri: 'https://our-list-server.herokuapp.com/',
 });
 
 ReactDOM.render(
