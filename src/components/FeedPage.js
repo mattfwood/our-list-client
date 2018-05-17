@@ -10,13 +10,16 @@ import posed from 'react-pose';
 const sidebarProps = {
   open: {
     // x: '0%',
-    delayChildren: 300,
+    // delayChildren: 300,
     staggerChildren: 50,
+    // delay: 300,
+    opacity: 1,
   },
   closed: {
-    delay: 500,
+    // delay: 500,
     staggerChildren: 20,
     // x: '-100%',
+    opacity: 0,
   },
 };
 
@@ -44,10 +47,12 @@ export default class FeedPage extends Component {
           if (error) {
             return (
               <div className="flex w-100 h-100 items-center justify-center pt7">
-                <div>An unexpected error occured.</div>
+                <div>An unexpected error occurred.</div>
               </div>
             );
           }
+
+          const lists = data.listFeed ? data.listFeed : [];
 
           return (
             <Grid>
@@ -55,14 +60,15 @@ export default class FeedPage extends Component {
                 <Col md={8} mdOffset={2} xs={12}>
                   {/* <h1>Lists</h1> */}
                   <CreatePage />
-                  <Row>
-                    <ListWrapper pose={loading ? 'closed' : 'open'}>
-                      {data.listFeed &&
-                        data.listFeed.map((list, index) => (
-                          <PosedListPreview list={list} index={index} />
-                        ))}
-                    </ListWrapper>
-                  </Row>
+                  <ListWrapper
+                    className="row"
+                    pose={!loading ? 'open' : 'closed'}
+                  >
+                    {lists.map((list, index) => (
+                      <PosedListPreview list={list} index={index} />
+                      // <ListPreview list={list} index={index} />
+                    ))}
+                  </ListWrapper>
                 </Col>
               </Row>
             </Grid>

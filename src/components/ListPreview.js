@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Col } from 'react-flexbox-grid';
@@ -22,19 +22,17 @@ const ListPreview = ({ list, index, hostRef }) => {
   const cardColor = [colors[colorIndex]];
 
   return (
-    <div ref={hostRef}>
-      <Col lg={4} md={6} xs={12}>
-        <Link to={`/list/${list.id}`}>
-          <div className="ListPreview" style={{ backgroundColor: cardColor }}>
-            <div className="ListPreview__title">{list.title}</div>
-            <div className="ListPreview__items">
-              {list.items.map(item => (
-                <div className="ListPreview__item">{item.text}</div>
-              ))}
-            </div>
+    <div className="col-lg-4 col-md-6 col-xs-12 box" ref={hostRef}>
+      <Link to={`/list/${list.id}`}>
+        <div className="ListPreview" style={{ backgroundColor: cardColor }}>
+          <div className="ListPreview__title">{list.title}</div>
+          <div className="ListPreview__items">
+            {list.items.map(item => (
+              <div className="ListPreview__item">{item.text}</div>
+            ))}
           </div>
-        </Link>
-      </Col>
+        </div>
+      </Link>
     </div>
   );
 };
