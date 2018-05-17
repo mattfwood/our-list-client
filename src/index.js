@@ -30,7 +30,7 @@ const uri = window.location.href.includes('localhost')
   ? 'http://localhost:4000'
   : 'https://our-list-server.herokuapp.com/';
 
-const httpLink = createHttpLink({ uri: 'http://localhost:4000' });
+const httpLink = createHttpLink({ uri });
 
 const middlewareLink = new ApolloLink((operation, forward) => {
   // get the authentication token from local storage if it exists
